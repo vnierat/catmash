@@ -1,14 +1,14 @@
 <template>
-  <div class="classement">
-    <ul id="list-cat">
-      <li v-for="cat in cats" :key="cat.id">
-        <div class="img-container">
-          <img v-bind:src="cat.url">
-          <span>{{cat.vote}}</span>
-        </div>
-      </li>
-    </ul>
-  </div>
+    <div class="ranking">
+            <ul class="listItems">
+                <li v-for="cat in cats" :key="cat.id">
+                    <div class="imgItemCat">
+                        <img v-bind:src="cat.url">
+                        <span>{{cat.vote}}</span>
+                    </div>
+                </li>
+            </ul>
+    </div>
 </template>
 
 <script lang="ts">
@@ -26,16 +26,21 @@ export default class RApp extends Vue {}
 </script>
 
 <style scoped>
-#list-cat li {
-  list-style-type: decimal;
-  width: 100%;
+ul li {
+    margin: 0!important;
+}
+ul li:nth-child(2n) {
+  background:#e4e7ec;
 }
 
-.img-container {
-  width: 25%;
+.ranking {
+    width: 100%;
 }
 
-.img-container img {
-  width: 100%;
+.listItems {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
 }
 </style>

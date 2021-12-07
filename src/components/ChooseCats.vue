@@ -1,5 +1,6 @@
 <template>
     <div class="container">
+        <div class="logo"><i class="fa-solid fa-cat"></i>catmash</div>
         <div class="mainApp">
             <div class="firstItem">
                 <img class="bg1" v-bind:src="catItemOne.url" v-on:click="voteFor(catItemOne.id)">
@@ -11,7 +12,8 @@
         
         <router-link to="/ranking">
             <div class="linkTo">
-                Voir les plus beaux chats
+                <div>Voir les plus beaux chats</div>
+                <div class="counter">{{ totalVotes }} vote{{totalVotes === 0 || totalVotes === 1 ? '': 's'}}</div>
             </div>
         </router-link>
     </div>
@@ -25,16 +27,20 @@ import { catStore } from '../catStore';
 
 @Component({
     data: () => {
+        const { totalVotes } = catStore.getVotes();
         const { catItemOne, catItemTwo } = catStore.getNewCats();
-        return { catItemOne, catItemTwo };
+        return { catItemOne, catItemTwo, totalVotes };
       
     },
     methods: {
         voteFor(id: string) {
+            catStore.setVotes();
             catStore.chooseCat(id);
+            const { totalVotes } = catStore.getVotes();
             const { catItemOne, catItemTwo} = catStore .getNewCats();
             this.$data.catItemOne = catItemOne;
             this.$data.catItemTwo = catItemTwo;
+            this.$data.totalVotes = totalVotes;
 
         },
     },
@@ -48,6 +54,20 @@ export default class Ranking extends Vue {}
     width: 100vw;
     position: relative;
 }
+
+.logo {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: absolute;
+    left: calc(50% - 6rem);
+    top:2%;
+    text-transform: uppercase;
+    font-size: 40px;
+    font-weight: 800;
+    color: #3a3f47;
+}
+
 .mainApp {
     height: 100%;
     width: 100%;
@@ -87,6 +107,13 @@ img {
   border-radius: 100%;
 }
 
+@media (max-width:720px) {
+    img {
+        width: 150px;
+        height: 150px;
+    }
+}
+
 .bg1 {
     outline: 10px solid #FFF;
 }
@@ -95,8 +122,21 @@ img {
     outline: 10px solid #e4e7ec
 }
 
-.link {
+.linkTo {
     position:absolute;
-    left: 30px;
+    bottom: 1px;
+    left: calc(50% - 8.5rem);
+    background: #FFF;
+    padding: 7px 40px;
+    outline: 7px solid #e4e7ec;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.counter {
+    font-size: 12px;
+    font-weight: 100;
 }
 </style>

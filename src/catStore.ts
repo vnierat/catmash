@@ -6,12 +6,13 @@ function generateRandom(max: number) {
 
 export const catStore = {
     state: { cats: getCats(), count : 0 },
-    countVote() {
+    setVotes() {
         this.state.count ++;
     },
-    getCounter() {
+    getVotes() {
+        console.log(this.state.count)
         return {
-            counter: this.state.count
+            totalVotes: this.state.count
         }
     },
     chooseCat(id: string) {
