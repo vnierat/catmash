@@ -6,7 +6,7 @@
 
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;100&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@100;400;800&display=swap');
 
 * {
     font-family: 'Montserrat', sans-serif;

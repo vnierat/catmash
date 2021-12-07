@@ -10,7 +10,6 @@ export const catStore = {
         this.state.count ++;
     },
     getVotes() {
-        console.log(this.state.count)
         return {
             totalVotes: this.state.count
         }
