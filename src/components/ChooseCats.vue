@@ -107,6 +107,10 @@ img {
   border-radius: 100%;
 }
 
+img:hover {
+    cursor: pointer;
+}
+
 @media (max-width:720px) {
     img {
         width: 150px;

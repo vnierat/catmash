@@ -27,7 +27,7 @@ import { catStore } from '../catStore';
 @Component({
     data: () => {
         return {
-        cats: catStore.state.cats.sort((cat1, cat2) => cat2.vote - cat1.vote),
+            cats: catStore.state.cats.sort((cat1, cat2) => cat2.vote - cat1.vote),
         };
     },
 })
